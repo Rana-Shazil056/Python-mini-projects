@@ -18,3 +18,17 @@ def Average():
 
 Average()
 
+def even():
+ while True:
+   user_input=input("Enter the num to find that num is even or odd and Type 'Quit' to exit ")
+   if user_input.lower()=='quit':
+    break
+   try:
+    n=int(user_input)
+    if (n%2==0):
+      print("Number is EVEN !")
+    else:
+      print("Number is ODD!")
+   except:
+    print("Enter valid num")
+even()
