@@ -32,3 +32,22 @@ def even():
    except:
     print("Enter valid num")
 even()
+
+def largest():
+ Numlist=[]
+ while True:
+  user_input=input("Enter num to input (or type 'Exit' to stop)")
+  if user_input.lower()=='exit':
+   print("Exiting...")
+   break
+  else:
+   n=int(user_input)
+   Numlist.append(n)
+ lar=0
+ for num in Numlist:
+   if lar < num:
+    lar = num
+   elif lar>num:
+    pass
+ print("Largest number is ",lar)
+ largest()
