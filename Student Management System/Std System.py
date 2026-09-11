@@ -7,6 +7,10 @@ def add_Student():
  except ValueError:
    print("Invalid roll number! Please enter a number.")
    return
+ for student in students:                               # Student Record check 
+  if student["Roll No"]==roll_no:
+   print("Student Already Exists!!")
+   return
  name=input("Enter the name of student: ")
  try:
    age=int(input("Enter the age of student: "))
@@ -40,25 +44,54 @@ def Search():
 
  print("No student found with that roll number!")
 
+def Delete():
+ try:
+  roll_no=int(input("Enter the Roll number to delete student: "))
+ except ValueError:
+  print("Enter a valid number!")
+  return
 
-while True:
- print("////////////////  Student Management System  ////////////////".title())
- n=int(input(("Press 1. for Adding Student\n" \
- "Press 2. For Display of Students\n" \
- "Press 3. For Searching of Student\n"
- "Press 4. for Exit program: \n")))
- os.system("cls")
- match n:
-    case 1:
-     add_Student()
-    case 2:
-     Display()
-    case 3:
-     Search()
-    case 4:
-     print("Exiting Program....")
-     break
-    case _:
-     print("OOPS!!! Invalid Input!")
+ for student in students:
+  if student["Roll No"] == roll_no:
+   print(f"\nRoll No : {student['Roll No']} , Name : {student['Name']} , Age : {student['Age']} , Dep: {student['Dep']} \n")
+   students.remove(student)
+   print("Student deleted successfully!")
+   return
+
+ print("No student found with that roll number!")
+
+def main():
+ while True:
+  print("////////////////  Student Management System  ////////////////")
+  print("1. Add Student")
+  print("2. Display Students")
+  print("3. Search Student")
+  print("4. Delete Student")
+  print("5. Exit Program")
+
+  try:
+   choice=int(input("Enter your choice: "))
+  except ValueError:
+   print("Enter a valid number!\n")
+   continue
+
+  os.system("cls")
+  match choice:
+   case 1:
+    add_Student()
+   case 2:
+    Display()
+   case 3:
+    Search()
+   case 4:
+    Delete()
+   case 5:
+    print("Exiting Program....")
+    break
+   case _:
+    print("OOPS!!! Invalid Input!")
+
+if __name__ == "__main__":
+ main()
 
         
