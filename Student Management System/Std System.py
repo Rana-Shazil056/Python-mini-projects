@@ -91,7 +91,4 @@ def main():
    case _:
     print("OOPS!!! Invalid Input!")
 
-if __name__ == "__main__":
- main()
-
         
