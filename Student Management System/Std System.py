@@ -1,4 +1,5 @@
 import os
+import time
 students=[]
 def add_Student():
  print("You Selected 1")
@@ -87,8 +88,11 @@ def main():
     Delete()
    case 5:
     print("Exiting Program....")
+    time.sleep(3)
     break
    case _:
     print("OOPS!!! Invalid Input!")
 
         
+if __name__ == "__main__":
+    main()
