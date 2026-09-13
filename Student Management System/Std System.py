@@ -61,6 +61,9 @@ def Delete():
 
  print("No student found with that roll number!")
 
+def Count():
+ print(f"Total number of students: {len(students)}")
+
 def main():
  while True:
   print("////////////////  Student Management System  ////////////////")
@@ -68,7 +71,8 @@ def main():
   print("2. Display Students")
   print("3. Search Student")
   print("4. Delete Student")
-  print("5. Exit Program")
+  print("5. Count Students")
+  print("6. Exit Program")
 
   try:
    choice=int(input("Enter your choice: "))
@@ -87,6 +91,8 @@ def main():
    case 4:
     Delete()
    case 5:
+    Count()
+   case 6:
     print("Exiting Program....")
     time.sleep(3)
     break
