@@ -1,0 +1,20 @@
+[
+    {
+        "Roll No": 1,
+        "Name": "Muzz",
+        "Age": 18,
+        "Dep": "CS"
+    },
+    {
+        "Roll No": 2,
+        "Name": "Moiz",
+        "Age": 17,
+        "Dep": "CS"
+    },
+    {
+        "Roll No": 3,
+        "Name": "Shazil",
+        "Age": 21,
+        "Dep": "cs"
+    }
+]
