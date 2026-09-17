@@ -30,17 +30,18 @@ def add_expense():
   if expense["ID"]==id:
    print("OOPSS!! This id already exists")
    return
-descr=input("Enter decription for expense: ")
-amount=float(input("Enter the amount for expense: "))
-tdate=date.today().strftime("%Y-%m-%d")
-expense_data={
+ descr=input("Enter decription for expense: ")
+ amount=float(input("Enter the amount for expense: "))
+ tdate=date.today().strftime("%Y-%m-%d")
+ expense_data={
   "ID":id,
   "Descr":descr,
   "Amount":amount,
   "Date":tdate
  }
-expenses.append(expense_data)
-save_expenses()
+ expenses.append(expense_data)
+ save_expenses()
+ print("Expense Added Sucessfully!!")
 
 def Search():
   try:
@@ -53,7 +54,7 @@ def Search():
    if d==expense['ID']:
     print("\nExpenses record:\n") 
     print(f"ID : {expense['ID']} \nDescription : {expense['Descr']} \nAmount : {expense['Amount']} \nDate : {expense['Date']}")
-
+    return
   print("Searched Id not Found!!!")  
 
 def display():
@@ -65,25 +66,33 @@ def display():
   
 
 def main():
- print("############    Expense Management System   ##############")
- print('''1. Add Expense
+ while True:
+  print("\n############    Expense Management System   ##############")
+  print('''1. Add Expense
 2. View All Expenses
 3. Search / Filter Expenses
 4. Delete Expense
 5. Summary & Total Spent
 6. Filter by Category
 7. Exit Program''')
- while True:
   try:
-   n=int(input("Enter Your Choice:"))
+   n=int(input("\nEnter Your Choice:"))
+   
   except ValueError:
    print("Enter valid choice: ")
+   continue
+  os.system("cls")
+  match n:
+   case 1:
+    add_expense()
+   case 2:
+    display()
+   case 3:
+    Search()
+   case 7:
+    print("Exiting program...")
+    break
+   case _:
+    print("Invalid choice. Please select a valid option.")
 
-match n:
- case 1:
-  add_expense()
- case 2:
-  display()
- case 3:
-     Search()  
 main()
