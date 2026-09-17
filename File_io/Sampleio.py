@@ -49,8 +49,8 @@ import json
 # # print(js_str)
 
 
-with open("File_io/Sample.json","r") as f:          # JSON LOAD
-    st=json.load(f)
+# with open("File_io/Sample.json","r") as f:          # JSON LOAD
+#     st=json.load(f)
     
 print(st)
 
