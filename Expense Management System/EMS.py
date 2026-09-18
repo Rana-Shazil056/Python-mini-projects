@@ -2,6 +2,7 @@
 import json
 import os
 from datetime import date
+import time
 
 DATA_FILE=os.path.join(os.path.dirname(__file__),"EMS_DATA2026.json")
 
@@ -58,12 +59,57 @@ def Search():
   print("Searched Id not Found!!!")  
 
 def display():
- if not expenses:
-  print("Record is empty! Nothing to Display!!!")
- else: 
+    if not expenses:
+        print("Record is empty! Nothing to Display!!!")
+        return
+
+    # Print table header
+    print(
+        f"\n{'ID':<5} {'Date':<12} {'Description':<20} {'Amount':>10}"
+    )
+    print("-" * 50)
+
+    # Print each item on a single aligned row
+    for expense in expenses:
+        e_id = expense.get("ID", "-")
+        e_date = expense.get("Date", "-")
+        descr = expense.get("Descr", "-")
+        amount = expense.get("Amount", 0.0)
+
+        print(f"{e_id:<5} {e_date:<12} {descr:<20} {amount:>10.2f}")
+
+
+def count():
+    if not expenses:
+        print("Record is empty! Nothing to calculate.")
+        return
+
+    # Display the list first
+    display()
+
+    # Calculate total
+    totalamount = 0.0
+    for expense in expenses:
+        totalamount += expense.get("Amount", 0.0)
+
+    # Print summary footer below the table
+    print("=" * 50)
+    print(f"{'TOTAL AMOUNT':<38} {totalamount:>10.2f}\n")
+
+def delete():
+  try:
+    id=int(input("Enter the ID of expense u want to delete"))
+  except ValueError:
+    print("Invalid input!!! plz try again")
+    return
+
   for expense in expenses:
-   print(f"ID : {expense['ID']} \nDescription : {expense['Descr']} \nAmount : {expense['Amount']} \nDate : {expense['Date']}")
-  
+    if id==expense['ID']:
+      print(f"ID : {expense['ID']} \nDescription : {expense['Descr']} \nAmount : {expense['Amount']} \nDate : {expense['Date']}")
+      expenses.remove(expense)
+      save_expenses()
+      print("Student removed Successfully")
+      return
 
 def main():
  while True:
@@ -71,10 +117,9 @@ def main():
   print('''1. Add Expense
 2. View All Expenses
 3. Search / Filter Expenses
-4. Delete Expense
-5. Summary & Total Spent
-6. Filter by Category
-7. Exit Program''')
+4. Total Expense and summary
+5. Delete Expense
+6. Exit Program''')
   try:
    n=int(input("\nEnter Your Choice:"))
    
@@ -89,8 +134,13 @@ def main():
     display()
    case 3:
     Search()
-   case 7:
+   case 4:
+    count()
+   case 5:
+    delete()
+   case 6:
     print("Exiting program...")
+    time.sleep(3)
     break
    case _:
     print("Invalid choice. Please select a valid option.")
