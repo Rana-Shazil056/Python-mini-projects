@@ -25,4 +25,29 @@ SELECT age, COUNT(*) FROM students GROUP BY age;
 
 select AVG(marks) from students WHERE age > 21;
 
-select age ,marks from students ORDER BY marks DESC
+select age ,marks from students ORDER BY marks DESC;
+
+SELECT age , AVG(marks) from students group by age ORDER BY AVG(marks);
+
+-- from low to high by marks sort
+select marks FROM students order by marks ASC;
+
+-- to rename table
+RENAME table students to USER;
+RENAME TABLE user to students;
+SELECT * from user;
+
+-- Alter Table  to add column
+
+ALTER Table 
+students
+ADD COLUMN is_active BOOLEAN DEFAULT false;
+-- Ater table to drop column
+ALTER TABLE students DROP COLUMN is_active ;
+
+SELECT * from students;
+
+--modify column datatype
+
+--rename column name
+alter table students rename COLUMN name to st_name; 
