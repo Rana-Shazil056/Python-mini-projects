@@ -26,3 +26,5 @@ alter table employee MODIFY department VARCHAR(2) to VARCHAR(3);
 -- add column
 alter table employee ADD column joining_date DATE DEFAULT(CURRENT_TIME);
 SELECT * FROM employee;
+
+
