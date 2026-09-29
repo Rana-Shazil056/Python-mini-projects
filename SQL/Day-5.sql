@@ -42,3 +42,9 @@ INSERT INTO user (name, email, gender, date_of_birth, salary) VALUES
 
 show TABLES;
 SELECT * from user;
+
+select gender , name from user;
+
+select * from user where salary > 60000 ORDER BY date_of_birth  DESC LIMIT 5; 
+
+drop Table staff_members;
