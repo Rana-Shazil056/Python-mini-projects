@@ -1,3 +1,4 @@
+-- Active: 1790453436125@@127.0.0.1@3306@startersql
 CREATE DATABASE if not EXISTS startersql;
 
 use startersql;
@@ -48,3 +49,35 @@ select gender , name from user;
 select * from user where salary > 60000 ORDER BY date_of_birth  DESC LIMIT 5; 
 
 drop Table staff_members;
+
+
+-- update salary
+ UPDATE user set salary=20000,email='aarav@aarav.com' where id=1;
+
+--  update id 5
+update user set salary=70000 where name="Farhan";
+
+--update ayesha khan name
+update user set name="Aisha khan" where email='aisha@example.com';
+
+--uodate salary by 5 rupess where salary is less than 60k
+UPDATE user set salary= salary+5 where salary >60000 limit 10;
+
+--Max min salary
+select MIN(salary) as min_salary ,MAX(salary) as max_salary from user;
+
+--Average 
+SELECT DATABASE();
+
+select gender, avg(salary) as avg_salary from user group by gender;
+
+select id , upper(name) as Name, CONCAT(LOWER(name),"0065") as username, YEAR(date_of_birth) as DOB , salary  FROM user;
+SELECT * from `user`;
+set autocommit=0;
+delete from user where id =2;                     -- Accidently del id 2
+select *FROM user;
+ROLLBACK;                                         -- gets back the id
+
+delete FROM user where id =1 and id=2;
+SELECT * from `user`;
+COMMIT;                                            --save changes
