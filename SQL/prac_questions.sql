@@ -217,3 +217,72 @@ select * from stud
 Right join 
 sports
 on sports.stud_id=stud.stud_id;
+
+
+--Level 1:
+--Q1
+-- std name where id =2
+use ai_platform;
+select stud_name from stud where stud_id=2;
+
+-- Q2
+-- total num in sports record
+select count(sp_id) from sports;
+--Q3
+--Record where std id not null
+select sports.sp_name,sports.sp_id from stud 
+inner join sports
+on sports.stud_id=stud.stud_id 
+where sports.stud_id is NOT NULL;
+
+
+--LEVEL 2
+--Q1:
+--inner join for developer and model names
+
+
+--Q1
+select dev_name,mo_name from developers
+inner JOIN
+ai_models
+on ai_models.dev_id=developers.dev_id;
+
+--Q2
+-- All Developers even with no model
+
+SELECT dev_name,role, mo_name from developers
+left join ai_models
+on ai_models.dev_id=developers.dev_id;
+
+-- Q3
+-- Dev Name with total models as count
+SELECT dev_name,count(ai_models.mo_id) from developers
+Left JOIN
+ai_models
+on ai_models.dev_id=developers.dev_id
+ group BY dev_name,developers.dev_id;
+
+
+-- LEVEL # 3
+-- Q#1
+-- Dev who created models>1
+Select dev_name ,count(ai_models.mo_id) as Total_Models
+from developers left JOIN
+ai_models 
+on ai_models.dev_id=developers.dev_id
+GROUP BY developers.dev_name HAVING Total_Models >1;
+
+-- Q2
+SELECT dev_name, COUNT(ai_models.mo_id) as total_count from developers
+left JOIN ai_models
+on ai_models.dev_id=developers.dev_id
+GROUP BY developers.dev_name HAVING total_count =0;
+
+-- Q3
+Select * from developers
+left JOIN ai_models
+on ai_models.dev_id=developers.dev_id
+ UNION
+Select * from developers
+RIGHT JOIN ai_models
+on ai_models.dev_id=developers.dev_id;
